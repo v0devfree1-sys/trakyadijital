@@ -1,0 +1,84 @@
+{
+  "name": "CaseStudy",
+  "type": "object",
+  "properties": {
+    "client_name": {
+      "type": "string"
+    },
+    "city": {
+      "type": "string"
+    },
+    "sector": {
+      "type": "string",
+      "enum": [
+        "tarim",
+        "sanayi",
+        "eticaret",
+        "yerel-ticaret"
+      ],
+      "default": "yerel-ticaret"
+    },
+    "summary": {
+      "type": "string"
+    },
+    "challenge": {
+      "type": "string"
+    },
+    "solution": {
+      "type": "string"
+    },
+    "services": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "results": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "label": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "label",
+          "value"
+        ]
+      }
+    },
+    "hero_image_url": {
+      "type": "string"
+    },
+    "published": {
+      "type": "boolean",
+      "default": false
+    }
+  },
+  "required": [
+    "client_name",
+    "summary"
+  ],
+  "rls": {
+    "read": {},
+    "create": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

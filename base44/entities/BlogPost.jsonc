@@ -1,0 +1,58 @@
+{
+  "name": "BlogPost",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string"
+    },
+    "slug": {
+      "type": "string",
+      "description": "URL dostu ba\u015fl\u0131k"
+    },
+    "excerpt": {
+      "type": "string",
+      "description": "Liste ve kartlarda g\u00f6sterilen k\u0131sa \u00f6zet"
+    },
+    "category": {
+      "type": "string"
+    },
+    "content": {
+      "type": "string",
+      "description": "Markdown i\u00e7erik"
+    },
+    "author": {
+      "type": "string",
+      "default": "DijiTrak Ekibi"
+    },
+    "read_minutes": {
+      "type": "integer",
+      "default": 5
+    },
+    "published": {
+      "type": "boolean",
+      "default": false
+    }
+  },
+  "required": [
+    "title",
+    "content"
+  ],
+  "rls": {
+    "read": {},
+    "create": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

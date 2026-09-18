@@ -1,0 +1,78 @@
+{
+  "name": "Appointment",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Randevu sahibinin ad\u0131 soyad\u0131"
+    },
+    "email": {
+      "type": "string",
+      "format": "email"
+    },
+    "phone": {
+      "type": "string"
+    },
+    "company": {
+      "type": "string"
+    },
+    "service": {
+      "type": "string",
+      "description": "G\u00f6r\u00fc\u015f\u00fclecek hizmet"
+    },
+    "date": {
+      "type": "string",
+      "format": "date",
+      "description": "Randevu tarihi (YYYY-MM-DD)"
+    },
+    "time": {
+      "type": "string",
+      "description": "Randevu saati (HH:MM)"
+    },
+    "message": {
+      "type": "string",
+      "description": "M\u00fc\u015fterinin ekledi\u011fi not"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "beklemede",
+        "onaylandi",
+        "gerceklesti",
+        "iptal"
+      ],
+      "default": "beklemede"
+    }
+  },
+  "required": [
+    "name",
+    "email",
+    "date",
+    "time"
+  ],
+  "rls": {
+    "create": {},
+    "read": {
+      "$or": [
+        {
+          "created_by_id": "{{user.id}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

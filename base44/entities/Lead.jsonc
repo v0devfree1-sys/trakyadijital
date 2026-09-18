@@ -1,0 +1,105 @@
+{
+  "name": "Lead",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "\u0130leti\u015fim ki\u015fisi ad\u0131 soyad\u0131"
+    },
+    "email": {
+      "type": "string",
+      "format": "email"
+    },
+    "phone": {
+      "type": "string"
+    },
+    "company": {
+      "type": "string"
+    },
+    "sector": {
+      "type": "string",
+      "enum": [
+        "tarim",
+        "sanayi",
+        "eticaret",
+        "yerel-ticaret",
+        "diger"
+      ],
+      "default": "diger"
+    },
+    "service": {
+      "type": "string"
+    },
+    "message": {
+      "type": "string"
+    },
+    "source": {
+      "type": "string",
+      "default": "web_form",
+      "description": "Talebin geldi\u011fi kanal: iletisim_sayfasi, ai_asistan vb."
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "yeni",
+        "iletisime_gecildi",
+        "teklif_gonderildi",
+        "donustu",
+        "kayip"
+      ],
+      "default": "yeni"
+    },
+    "notes": {
+      "type": "array",
+      "description": "Ekibin talebe ekledi\u011fi i\u00e7 notlar",
+      "items": {
+        "type": "object",
+        "properties": {
+          "text": {
+            "type": "string"
+          },
+          "author": {
+            "type": "string"
+          },
+          "date": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "text",
+          "date"
+        ]
+      }
+    }
+  },
+  "required": [
+    "name",
+    "email",
+    "message"
+  ],
+  "rls": {
+    "create": {},
+    "read": {
+      "$or": [
+        {
+          "created_by_id": "{{user.id}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

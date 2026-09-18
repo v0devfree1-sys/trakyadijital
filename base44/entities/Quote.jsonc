@@ -1,0 +1,106 @@
+{
+  "name": "Quote",
+  "type": "object",
+  "properties": {
+    "lead_id": {
+      "type": "string",
+      "description": "\u0130lgili m\u00fc\u015fteri talebi (Lead) kayd\u0131"
+    },
+    "name": {
+      "type": "string",
+      "description": "M\u00fc\u015fteri ad\u0131 soyad\u0131"
+    },
+    "email": {
+      "type": "string",
+      "format": "email"
+    },
+    "company": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string",
+      "description": "Teklif ba\u015fl\u0131\u011f\u0131"
+    },
+    "service": {
+      "type": "string",
+      "description": "Teklif edilen ana hizmet"
+    },
+    "items": {
+      "type": "array",
+      "description": "Teklif kalemleri",
+      "items": {
+        "type": "object",
+        "properties": {
+          "description": {
+            "type": "string"
+          },
+          "amount": {
+            "type": "number",
+            "description": "Kalem tutar\u0131 (TRY)"
+          }
+        },
+        "required": [
+          "description",
+          "amount"
+        ]
+      }
+    },
+    "total": {
+      "type": "number",
+      "description": "Teklif toplam tutar\u0131 (TRY)"
+    },
+    "valid_until": {
+      "type": "string",
+      "format": "date",
+      "description": "Teklifin ge\u00e7erlilik sonu (YYYY-MM-DD)"
+    },
+    "notes": {
+      "type": "string",
+      "description": "M\u00fc\u015fteriye g\u00f6r\u00fcnen ek not / kapsam a\u00e7\u0131klamas\u0131"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "taslak",
+        "gonderildi",
+        "kabul",
+        "red"
+      ],
+      "default": "taslak"
+    },
+    "sent_date": {
+      "type": "string",
+      "format": "date",
+      "description": "Teklifin m\u00fc\u015fteriye g\u00f6nderildi\u011fi tarih"
+    }
+  },
+  "required": [
+    "name",
+    "email",
+    "title",
+    "items",
+    "total"
+  ],
+  "rls": {
+    "read": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "create": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

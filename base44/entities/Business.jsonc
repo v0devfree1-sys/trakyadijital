@@ -1,0 +1,74 @@
+{
+  "name": "Business",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "\u0130\u015fletme ad\u0131"
+    },
+    "city": {
+      "type": "string",
+      "enum": [
+        "Tekirda\u011f",
+        "Edirne",
+        "K\u0131rklareli",
+        "\u00c7anakkale"
+      ],
+      "description": "\u0130\u015fletmenin bulundu\u011fu il"
+    },
+    "district": {
+      "type": "string",
+      "description": "\u0130l\u00e7e"
+    },
+    "sector": {
+      "type": "string",
+      "description": "Faaliyet alan\u0131: Tar\u0131m & G\u0131da, Esnaf & D\u00fckkan, Kafe & Restoran vb."
+    },
+    "description": {
+      "type": "string",
+      "description": "\u0130\u015fletme tan\u0131t\u0131m metni"
+    },
+    "phone": {
+      "type": "string"
+    },
+    "website": {
+      "type": "string"
+    },
+    "address": {
+      "type": "string"
+    },
+    "featured": {
+      "type": "boolean",
+      "default": false,
+      "description": "Rehberde \u00f6ne \u00e7\u0131kar\u0131lan i\u015fletme"
+    },
+    "published": {
+      "type": "boolean",
+      "default": true
+    }
+  },
+  "required": [
+    "name",
+    "city",
+    "sector",
+    "description"
+  ],
+  "rls": {
+    "read": {},
+    "create": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}
